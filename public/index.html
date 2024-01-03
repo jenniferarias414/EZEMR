@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./styles.css">
+    <title>EZEMR</title>
+</head>
+<body>
+    <header>
+        <h2 id="site-title">EZEMR</h2>
+        <h2 id="welcome-user">Welcome, User</h2>
+    </header>
+
+    <section>
+        <p>My Patients</p>
+        <p>My Orders</p>
+    </section>
+
+    <section>
+        <div id="my-patients"></div>
+    </section>
+
+    <form id="add-patient">
+        <fieldset>
+            <legend>Add New Patient</legend>
+            
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname"><br>
+            
+            <label for="dob">Date of Birth:</label><br>
+            <input type="text" id="dob" name="dob" placeholder="**/**/**"><br>
+    
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br>
+    
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
