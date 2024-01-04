@@ -1,3 +1,4 @@
+// index.js
 console.log("JS Connected")
 
 const ptContainer = document.getElementById('my-patients');
@@ -31,24 +32,42 @@ function addPatient(patient) {
 
 // Function to display patients on the page
 function displayPatients() {
-    ptContainer.innerHTML = ''; // Clear previous patients
+    ptContainer.innerHTML = '';
 
     patients.forEach((patient, index) => {
         const ptDiv = document.createElement('div');
-        const ordersDiv = document.createElement('div');
 
         ptDiv.innerHTML = `
             <p>${index + 1}. ${patient.firstName} ${patient.lastName}</p>
             <p>Date of Birth: ${patient.dob}</p>
             <p>Gender: ${patient.gender}</p>
         `;
+
+        // Create checkboxes for each order
+        patient.orders.forEach(order => {
+            const orderCheckbox = document.createElement('input');
+            orderCheckbox.type = 'checkbox';
+            orderCheckbox.value = order;
+            orderCheckbox.id = `order-${order.id}`; // Assign a unique ID if you have order IDs
+            orderCheckbox.disabled = false; // Enable the checkbox
+            ptDiv.appendChild(orderCheckbox);
+
+            const orderLabel = document.createElement('label');
+            orderLabel.htmlFor = `order-${order.id}`;
+            orderLabel.textContent = order;
+            ptDiv.appendChild(orderLabel);
+        });
+
+        // Add complete button
+        const completeButton = document.createElement('button');
+        completeButton.type = 'button';
+        completeButton.textContent = 'Complete';
+        ptDiv.appendChild(completeButton);
+
         ptContainer.appendChild(ptDiv);
 
-        ordersDiv.innerHTML = `
-        <p>Orders: ${patient.orders.join(', ')}</p>
-        <button type="submit">Complete</button>
-        `;
-        ptContainer.appendChild(ordersDiv);
+        // Attach click event listener to the complete button
+        completeButton.addEventListener('click', () => completeOrder(patient.id));
     });
 }
 
@@ -68,9 +87,9 @@ ptForm.addEventListener('submit', function (event) {
 
     // Send the new patient data to the server
     axios.post('http://localhost:4004/api/newPatient', newPatient)
-        .then(response => {
-            console.log(response.data); // Log the server's response
-            addPatient(newPatient); // Add the patient to the local list
+        .then(res => {
+            console.log(res.data);
+            addPatient(newPatient);
         })
         .catch(error => {
             console.error('Error adding patient:', error);
@@ -95,22 +114,25 @@ function getSelectedOrders() {
     return selectedOrders;
 }
 
-// Display selected orders on initial load
-displaySelectedOrders(ordersSelect);
+function completeOrder(patientId) {
+    const patient = patients.find(p => p.id === patientId);
+    const completedOrders = [];
 
-ordersSelect.addEventListener('change', function () {
-    displaySelectedOrders(this);
-});
+    // Iterate through checkboxes and collect completed orders
+    patient.orders.forEach(order => {
+        const checkbox = document.getElementById(`order-${order.id}`);
+        if (checkbox.checked) {
+            completedOrders.push(order);
+        }
+    });
 
-function displaySelectedOrders(selectElement) {
-    selectedOrdersDiv.innerHTML = ''; // Clear previous selections
-
-    for (let i = 0; i < selectElement.options.length; i++) {
-        if (selectElement.options[i].selected) {
-            const orderCheckbox = document.createElement('input');
-            orderCheckbox.type = 'checkbox';
-            orderCheckbox.value = selectElement.options[i].value;
-            orderCheckbox.disabled = true;
-
-
-        }}}
+    // Send the completed orders to the server
+    axios.put(`http://localhost:4004/api/completeOrder/${patientId}`, { completedOrders })
+        .then((res) => {
+            console.log(res.data);
+            fetchPatients(); // Fetch patients again to update the display
+        })
+        .catch((error) => {
+            console.error('Error completing order:', error);
+        });
+}
