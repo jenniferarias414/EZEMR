@@ -1,5 +1,17 @@
-let myPatients = []
-let globalId = 1
+let myPatients = [{dob: 
+    "07/01/83",
+    firstName: 
+    "Jenny",
+    gender: 
+    "female",
+    id: 
+    1,
+    lastName: 
+    "Arias",
+    orders: 
+    ['X-Ray', 'Bloodwork']}]
+
+let globalId = 2
 
 // let orders = []
 // let orderId = 1
@@ -21,7 +33,10 @@ module.exports = {
         const { id } = req.params;
         const { completedOrders } = req.body;
 
-        const patientIndex = myPatients.findIndex((patient) => patient.id === parseInt(id, 10));
+        console.log(id, completedOrders)
+
+        const patientIndex = myPatients.findIndex((patient) => patient.id === +id);
+
 
         if (patientIndex !== -1) {
             myPatients[patientIndex].orders = myPatients[patientIndex].orders.filter(

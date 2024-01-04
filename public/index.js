@@ -1,4 +1,3 @@
-// index.js
 console.log("JS Connected")
 
 const ptContainer = document.getElementById('my-patients');
@@ -16,8 +15,8 @@ let patients = [];
 function fetchPatients() {
     axios.get('http://localhost:4004/api/getPatients')
         .then(response => {
-            patients = response.data;
-            displayPatients();
+            // patients = response.data;
+            displayPatients(response.data);
         })
         .catch(error => {
             console.error('Error retrieving patients:', error);
@@ -25,13 +24,14 @@ function fetchPatients() {
 }
 
 // Function to add a patient to the local list
-function addPatient(patient) {
-    patients.push(patient);
-    displayPatients();
-}
+// function addPatient(patient) {
+//     patients.push(patient); //post request
+//     displayPatients();
+// }
 
 // Function to display patients on the page
-function displayPatients() {
+function displayPatients(patients) {
+    // console.log('complete order for patientId:', patientId);
     ptContainer.innerHTML = '';
 
     patients.forEach((patient, index) => {
@@ -48,8 +48,9 @@ function displayPatients() {
             const orderCheckbox = document.createElement('input');
             orderCheckbox.type = 'checkbox';
             orderCheckbox.value = order;
-            orderCheckbox.id = `order-${order.id}`; // Assign a unique ID if you have order IDs
+            // orderCheckbox.id = `order-${order.id}`; // Assign a unique ID if you have order IDs
             orderCheckbox.disabled = false; // Enable the checkbox
+            orderCheckbox.classList.add(`orderCheckbox-${patient.id}`)
             ptDiv.appendChild(orderCheckbox);
 
             const orderLabel = document.createElement('label');
@@ -66,7 +67,15 @@ function displayPatients() {
 
         ptContainer.appendChild(ptDiv);
 
+        //add class to elements for styling
+        completeButton.classList.add('completeBtn')
+        ptDiv.classList.add('ptDiv')
+        ptContainer.classList.add('ptContainer')
+        selectedOrdersDiv.classList.add('selectedOrdersDiv')
+        
+
         // Attach click event listener to the complete button
+        console.log('Patient ID:', patient.id);
         completeButton.addEventListener('click', () => completeOrder(patient.id));
     });
 }
@@ -89,7 +98,7 @@ ptForm.addEventListener('submit', function (event) {
     axios.post('http://localhost:4004/api/newPatient', newPatient)
         .then(res => {
             console.log(res.data);
-            addPatient(newPatient);
+            displayPatients(res.data);
         })
         .catch(error => {
             console.error('Error adding patient:', error);
@@ -115,14 +124,18 @@ function getSelectedOrders() {
 }
 
 function completeOrder(patientId) {
-    const patient = patients.find(p => p.id === patientId);
+    let checkboxes = document.querySelectorAll(`.orderCheckbox-${patientId}`)
+    console.log(checkboxes)
+    // console.log(ptContainer.childNodes[patientId - 1].childNodes)
+    // const patient = patients.find(p => p.id === patientId); //do in backend, use delete
     const completedOrders = [];
 
     // Iterate through checkboxes and collect completed orders
-    patient.orders.forEach(order => {
-        const checkbox = document.getElementById(`order-${order.id}`);
-        if (checkbox.checked) {
-            completedOrders.push(order);
+    checkboxes.forEach(box => {
+        // const checkbox = document.getElementById(`order-${order.id}`);
+        if (box.checked) {
+            completedOrders.push(box.value);
+            // console.log(box)
         }
     });
 
