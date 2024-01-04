@@ -41,6 +41,15 @@
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select><br>
+
+            <label for="orders">Select Orders (Ctrl+Click for multi-selection):</label><br>
+        <select id="orders" name="orders" multiple>
+            <option value="order1">X-Ray</option>
+            <option value="order2">Bloodwork</option>
+            <option value="order3">EKG</option>
+        </select><br>
+
+        <div id="selected-orders"></div>
     
             <input type="submit" value="Submit">
         </fieldset>
@@ -50,4 +59,4 @@
     <script src="../node_modules/axios/dist/axios.min.js"></script>
     <script src="./index.js"></script>
 </body>
-</html>
+</html> 
