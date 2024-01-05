@@ -1,6 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #EDF6F9;
+    margin: 0;
+    padding: 0;
+}
+
 header {
     background-color: #05668D;
-    height: 55px;
+    height: 70px;
     padding: 8px;
     box-sizing: border-box;
     display: flex;
@@ -21,38 +32,95 @@ header {
     color: #EDF6F9;
 }
 
+section {
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
 #my-patients {
-    border: 1px solid green;
-    padding: 10px;
-    margin-top: 8px;
+    width: 60%; /* Adjust the width as needed */
 }
 
 #add-patient {
-    border: 1px solid red;
-    margin-top: 8px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    width: 40%
+}
+
+#add-patient fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    min-width: fit-content;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
 }
 
 #orders {
-    border: 1px solid orchid;
+    height: 100px; /* Set a fixed height for the orders select box */
+}
+
+.completeBtn {
+    display: block;
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 85px;
+    height: 35px;
 }
 
 .ptDiv {
+    /* border: 1px solid #ccc; */
+    border: 1px solid blue;
+    padding: 10px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    border: 1px solid blue;
-    margin-bottom: 8px;
+    width: 100vw;
+    box-sizing: border-box;
 }
 
 .ptContainer {
-    border: 1px solid black    
-
+    display: flex;
+    flex-direction: column;
 }
 
-/* .selectedOrdersDiv {
-    border: 1px solid purple;
-    margin-top: 8px;
+.order-checkbox-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+    
+}
 
-} */
+.order-checkbox-container input {
+    margin-right: 5px;
+}
+
+.orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-left: 20px;
+    border: 1px solid purple;
+    width: 300px;
+    
+}
+
+.debug-box {
+    background-color: #05668D;
+    border: 1px solid black;
+}
+
+

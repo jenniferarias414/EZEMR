@@ -36,6 +36,7 @@ function displayPatients(patients) {
 
     patients.forEach((patient, index) => {
         const ptDiv = document.createElement('div');
+        ptDiv.classList.add('ptDiv');
 
         ptDiv.innerHTML = `
             <p>${index + 1}. ${patient.firstName} ${patient.lastName}</p>
@@ -43,20 +44,31 @@ function displayPatients(patients) {
             <p>Gender: ${patient.gender}</p>
         `;
 
+        const ordersContainer = document.createElement('div');
+        ordersContainer.classList.add('orders-container'); // container for orders
+        ptDiv.appendChild(ordersContainer);
+
         // Create checkboxes for each order
         patient.orders.forEach(order => {
+            const orderCheckboxContainer = document.createElement('div');
+            orderCheckboxContainer.classList.add('order-checkbox-container'); // container to style each checkbox and label
+
             const orderCheckbox = document.createElement('input');
             orderCheckbox.type = 'checkbox';
             orderCheckbox.value = order;
-            // orderCheckbox.id = `order-${order.id}`; // Assign a unique ID if you have order IDs
+            orderCheckbox.id = `order-${patient.id}-${order}`; //need ID for label 
             orderCheckbox.disabled = false; // Enable the checkbox
             orderCheckbox.classList.add(`orderCheckbox-${patient.id}`)
             ptDiv.appendChild(orderCheckbox);
 
             const orderLabel = document.createElement('label');
-            orderLabel.htmlFor = `order-${order.id}`;
+            orderLabel.htmlFor = `order-${patient.id}-${order}`;
             orderLabel.textContent = order;
             ptDiv.appendChild(orderLabel);
+
+            orderCheckboxContainer.appendChild(orderCheckbox);
+            orderCheckboxContainer.appendChild(orderLabel);
+            ordersContainer.appendChild(orderCheckboxContainer);
         });
 
         // Add complete button
@@ -69,7 +81,7 @@ function displayPatients(patients) {
 
         //add class to elements for styling
         completeButton.classList.add('completeBtn')
-        ptDiv.classList.add('ptDiv')
+        
         ptContainer.classList.add('ptContainer')
         // selectedOrdersDiv.classList.add('selectedOrdersDiv')
         
