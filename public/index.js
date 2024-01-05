@@ -7,7 +7,7 @@ const lastName = document.getElementById('lname');
 const ptDob = document.getElementById('dob');
 const gender = document.getElementById('gender');
 const ordersSelect = document.getElementById('orders');
-const selectedOrdersDiv = document.getElementById('selected-orders');
+// const selectedOrdersDiv = document.getElementById('selected-orders');
 
 let patients = [];
 
@@ -71,7 +71,7 @@ function displayPatients(patients) {
         completeButton.classList.add('completeBtn')
         ptDiv.classList.add('ptDiv')
         ptContainer.classList.add('ptContainer')
-        selectedOrdersDiv.classList.add('selectedOrdersDiv')
+        // selectedOrdersDiv.classList.add('selectedOrdersDiv')
         
 
         // Attach click event listener to the complete button
@@ -110,7 +110,7 @@ ptForm.addEventListener('submit', function (event) {
     ptDob.value = '';
     gender.value = '';
     ordersSelect.value = '';
-    selectedOrdersDiv.innerHTML = '';
+    // selectedOrdersDiv.innerHTML = '';
 });
 
 function getSelectedOrders() {
