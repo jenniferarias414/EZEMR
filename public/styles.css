@@ -28,10 +28,21 @@ header {
     padding: 5px;
 }
 
-#welcome-user {
+#user {
     color: #EDF6F9;
+    width: 125px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: end;
 }
 
+#log-out {
+    font-size: 14px;
+    color: #EDF6F9;
+    cursor: pointer;
+    padding-bottom: 9px;
+}
 section {
     display: flex; 
     flex-direction: column;
@@ -122,5 +133,25 @@ select {
     background-color: #05668D;
     border: 1px solid black;
 }
+
+/* @media (max-width: 500px) {
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+    }
+}
+
+@media (min-width: 501px) {
+    section {
+        display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    }
+} */
+
+
 
 
