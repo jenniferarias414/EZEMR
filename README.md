@@ -22,7 +22,6 @@ EZ-EMR is a simple Electronic Medical Records (EMR) system designed to streamlin
    - Media query for screens larger than 800px.
 
 ## Demo Video
-Check out a demo of the EZ-EMR project:
+Check out a demo of the EZ-EMR project on [YouTube](https://youtu.be/lNv6AL4PeAs?si=my8R3F-oUYHweWT-).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lNv6AL4PeAs?si=2YXDCBHoQ2TtJmqP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
