@@ -17,7 +17,6 @@ header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 32px;
-    /* width: ; */
 }
 
 p {
@@ -55,7 +54,7 @@ section {
 }
 
 #my-patients {
-    width: 60%; /* Adjust the width as needed */
+    width: 60%; 
 }
 
 #add-patient {
@@ -86,7 +85,7 @@ select {
 }
 
 #orders {
-    height: 100px; /* Set a fixed height for the orders select box */
+    height: 100px; 
 }
 
 .completeBtn {
@@ -101,7 +100,6 @@ select {
 }
 
 .ptDiv {
-    /* border: 1px solid #ccc; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: white;
     padding: 10px;
@@ -151,28 +149,6 @@ select {
     }
 }
 
-/* .debug-box {
-    background-color: #05668D;
-    border: 1px solid black;
-} */
-
-/* @media (max-width: 500px) {
-    section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100vw;
-    }
-}
-
-@media (min-width: 501px) {
-    section {
-        display: flex; 
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    }
-} */
 
 
 

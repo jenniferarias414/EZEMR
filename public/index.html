@@ -22,11 +22,6 @@
         <div id="my-patients"></div>
     </section>
 
-    <!-- <section>
-        <p>My Orders</p>
-        <div id="my-orders"></div>
-    </section> -->
-
     <form id="add-patient">
         <fieldset>
             <legend>Add New Patient</legend>
@@ -38,7 +33,7 @@
             <input type="text" id="lname" name="lname"><br>
             
             <label for="dob">Date of Birth:</label><br>
-            <input type="text" id="dob" name="dob" placeholder="**/**/**"><br>
+            <input type="text" id="dob" name="dob" placeholder="**/**/****"><br>
     
             <label for="gender">Gender:</label><br>
             <select id="gender" name="gender">
@@ -53,16 +48,10 @@
             <option value="order3">EKG</option>
             <option value="order4">Ortho Splint</option>
         </select><br>
-
-        <!-- <div id="selected-orders"></div> -->
     
             <input type="submit" value="Submit" style="cursor: pointer">
         </fieldset>
     </form>
-
-    <!-- <div class="debug-box">
-        This is my debug box
-    </div> -->
 
 
     <script src="../node_modules/axios/dist/axios.min.js"></script>

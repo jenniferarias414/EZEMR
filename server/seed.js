@@ -6,11 +6,13 @@ const sequelize = new Sequelize(CONNECTION_STRING)
 module.exports = {
     seed: (req, res) => {
         sequelize.query(`
-        drop table if exists users;
-        drop table if exists patient;
+        
         drop table if exists xray_order;
         drop table if exists blood_order;
         drop table if exists ekg_order;
+        drop table if exists ortho_order;
+        drop table if exists patient;
+        drop table if exists users;
 
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
@@ -58,10 +60,10 @@ module.exports = {
             ('Billy', 'Billy123');
 
         insert into patient (user_id, first_name, last_name, date_of_birth, gender)
-        values (1, 'Jimmy', 'Smith', 10/03/1980, true),
-            (2, 'Sally', 'Hamilton', 05/06/1945, false),
-            (3, 'Jessica', 'Diver', 08/12/2012, false),
-            (2, 'Gary', 'Sprinkler', 03/22/1995, true);
+        values (1, 'Jimmy', 'Smith', '1980-03-10', true),
+            (2, 'Sally', 'Hamilton', '1945-06-05', false),
+            (3, 'Jessica', 'Diver', '2012-12-08', false),
+            (2, 'Gary', 'Sprinkler', '1995-03-25', true);
         `).then(() => {
             console.log('DB seeded successfully!')
             res.sendStatus(200)

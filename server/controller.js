@@ -1,5 +1,10 @@
+// require('dotenv').config() //configuring environment to use variables
+// const {CONNECTION_STRING} = process.env //processing the envir variables
+// const Sequelize = require('sequelize') //this class is how we connect to a db
+// const sequelize = new Sequelize(CONNECTION_STRING)
+
 let myPatients = [{dob: 
-    "07/01/83",
+    "07/01/1983",
     firstName: 
     "Jenny",
     gender: 
@@ -13,8 +18,7 @@ let myPatients = [{dob:
 
 let globalId = 2
 
-// let orders = []
-// let orderId = 1
+
 
 module.exports = {
     newPatient: (req, res) => {
@@ -28,6 +32,15 @@ module.exports = {
     getPatients: (req, res) => {
         res.status(200).send(myPatients)
     },
+
+    // getPatients: (req, res) => {
+    //     sequelize.query(`
+    //     SELECT * FROM patients
+    //     WHERE user_id = 2;
+        
+    //     `).then(dbRes => res.status(200).send(dbRes[0]))
+    //     .catch((err) => console.error(err))
+    // },
 
     completeOrder: (req, res) => {
         const { id } = req.params;
@@ -48,21 +61,6 @@ module.exports = {
             res.status(404).send("Patient not found");
         }
     },
-    
-    // newOrder: (req, res) => {
-    //     let newOrder = req.body
-    //     newOrder.id = orderId
-    //     orderId++
-    //     orders.push(newOrder)
-    //     res.status(200).send(orders)
-    // },
-
-    // completeOrder: (req, res) => {
-    //     let indexValue = orders.findIndex((order) => order.id === req.body.id)
-    //     console.log(indexValue)
-    //     console.log(orders[indexValue])
-    //     orders.splice(indexValue, 1, req.body)
-    //     res.status(200).send(orders)
-    // },
-
 }
+
+

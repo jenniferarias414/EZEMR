@@ -7,7 +7,6 @@ const lastName = document.getElementById('lname');
 const ptDob = document.getElementById('dob');
 const gender = document.getElementById('gender');
 const ordersSelect = document.getElementById('orders');
-// const selectedOrdersDiv = document.getElementById('selected-orders');
 
 let patients = [];
 
@@ -23,11 +22,6 @@ function fetchPatients() {
         });
 }
 
-// Function to add a patient to the local list
-// function addPatient(patient) {
-//     patients.push(patient); //post request
-//     displayPatients();
-// }
 
 // Function to display patients on the page
 function displayPatients(patients) {
@@ -83,7 +77,7 @@ function displayPatients(patients) {
         completeButton.classList.add('completeBtn')
         
         ptContainer.classList.add('ptContainer')
-        // selectedOrdersDiv.classList.add('selectedOrdersDiv')
+       
         
 
         // Attach click event listener to the complete button
@@ -122,7 +116,7 @@ ptForm.addEventListener('submit', function (event) {
     ptDob.value = '';
     gender.value = '';
     ordersSelect.value = '';
-    // selectedOrdersDiv.innerHTML = '';
+    
 });
 
 function getSelectedOrders() {
