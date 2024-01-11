@@ -1,7 +1,7 @@
-// require('dotenv').config() //configuring environment to use variables
-// const {CONNECTION_STRING} = process.env //processing the envir variables
-// const Sequelize = require('sequelize') //this class is how we connect to a db
-// const sequelize = new Sequelize(CONNECTION_STRING)
+require('dotenv').config() //configuring environment to use variables
+const {CONNECTION_STRING} = process.env //processing the envir variables
+const Sequelize = require('sequelize') //this class is how we connect to a db
+const sequelize = new Sequelize(CONNECTION_STRING)
 
 let myPatients = [{dob: 
     "07/01/1983",
@@ -29,18 +29,18 @@ module.exports = {
         res.status(200).send(myPatients)
     },
 
-    getPatients: (req, res) => {
-        res.status(200).send(myPatients)
-    },
-
     // getPatients: (req, res) => {
-    //     sequelize.query(`
-    //     SELECT * FROM patients
-    //     WHERE user_id = 2;
-        
-    //     `).then(dbRes => res.status(200).send(dbRes[0]))
-    //     .catch((err) => console.error(err))
+    //     res.status(200).send(myPatients)
     // },
+
+    getPatients: (req, res) => {
+        sequelize.query(`
+        SELECT * FROM patient
+        WHERE user_id = ${req.query.userId};
+        
+        `).then(dbRes => res.status(200).send(dbRes))
+        .catch((err) => console.error(err))
+    },
 
     completeOrder: (req, res) => {
         const { id } = req.params;
@@ -61,6 +61,29 @@ module.exports = {
             res.status(404).send("Patient not found");
         }
     },
+
+    login: (req, res) => {
+        let {username, password} = req.body
+
+        sequelize.query(`
+        select * from users
+        where username = '${username}';
+        `)
+        .then((dbRes) => {
+            console.log(dbRes[0])
+            if (dbRes[0].length !== 1){
+                res.status(401).send('username incorrect')
+            
+            } else {
+                console.log(password)
+                if (password === dbRes[0][0].password){
+                    res.status(200).send(dbRes[0])
+                } else {
+                    res.status(401).send('password incorrect')
+                }
+            }
+        })
+    }
 }
 
 
